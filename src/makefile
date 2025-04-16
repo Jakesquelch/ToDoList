@@ -6,7 +6,7 @@ CXXFLAGS = -std=c++17 -Wall -I../include
 TARGET = a
 
 # Source files
-SRCS = main.cpp Task.cpp TodoList.cpp
+SRCS = main.cpp Task.cpp ToDoList.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
