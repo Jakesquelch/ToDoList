@@ -1,13 +1,11 @@
 #include "ToDoList.h";
 #include <iostream>
 
-void ToDoList::addTask(const std::string& description) 
-{
+void ToDoList::addTask(const std::string& description) {
     tasks.emplace_back(description); //emplace_back constructs the Task object in place, avoiding unnecessary copies
 }
 
-void ToDoList::removeTask(int index) 
-{
+void ToDoList::removeTask(int index) {
     if(index >= 0 && index < tasks.size()) {
         tasks.erase(tasks.begin() + index);
     } else {
@@ -15,8 +13,7 @@ void ToDoList::removeTask(int index)
     }  
 }
 
-void displayTasks() const 
-{
+void displayTasks() const {
     for (size_t i = 0; i < tasks.size(); ++i) {
         std::cout << i + 1 << ". " << tasks[i].getDescription() <<
         (tasks[i].isCompleted() ? " [Completed]" : "") << "\n";
@@ -24,8 +21,7 @@ void displayTasks() const
 
 }
 
-void completeTask(int index) 
-{
+void completeTask(int index) {
     if(index >= 0 && index < tasks.size()) {
         task[index].setCompleted(true);
     } else {
