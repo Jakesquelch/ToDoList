@@ -6,7 +6,7 @@
 
 class ToDoList {
 private:
-    std::vector<Task> tasks; // created a vector to store tasks
+    std::vector<Task> tasks; // created a vector called tasks, of Task objects
 
 public:
     void addTask(const std::string& description);
