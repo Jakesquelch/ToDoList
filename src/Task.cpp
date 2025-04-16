@@ -1,4 +1,4 @@
-#include "Task.h";
+#include "Task.h"
 
 // Constructor initializes the task with a description and sets completed to false
 Task::Task(const std::string &desc) : description(desc), completed(false)

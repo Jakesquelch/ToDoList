@@ -1,5 +1,5 @@
-#include "Task.h";
-#include "ToDoList.h";
+#include "Task.h"
+#include "ToDoList.h"
 
 #include <iostream>
 
@@ -45,11 +45,25 @@ int main()
         }
         case 3:
         {
-            std::cout "(3) Displaying all tasks: \n";
+            std::cout << "(3) Displaying all tasks: \n";
             todolist.displayTasks();
+            break;
         }
+        case 4:
+        {
+            int index;
+            std::cout << "Enter task number to mark as completed: ";
+            std::cin >> index;
+            todolist.completeTask(index - 1);
+            break;
         }
-    }
+        case 5:
+            std::cout << "Exiting...see ya pal!\n";
+            break;
+        default:
+            std::cout << "Invalid choice. Try again.\n";
+        }
+    } while (choice != 5);
 
     return 0;
 }
