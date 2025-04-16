@@ -15,7 +15,7 @@ public:
 
     //functions for Task class
     std::string getDescription() const; 
-    //const ensures that the function does not modify the object
+    //const ensures that the function does not modify the object - it can also be called on const objects
     bool isCompleted() const;
     void setCompleted(bool status);
 
