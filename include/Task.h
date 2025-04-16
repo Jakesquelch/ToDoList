@@ -4,7 +4,8 @@
 
 #include <string>
 
-class Task {
+class Task 
+{
 private:
     std::string description;
     bool completed;
