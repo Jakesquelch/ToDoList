@@ -1,0 +1,28 @@
+# Compiled object files
+*.o
+*.obj
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Build directories
+/build/
+/bin/
+/debug/
+/release/
+
+# IDE files (optional)
+*.vscode/
+*.idea/
+*.sublime*
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup and temporary files
+*~
+*.swp
