@@ -9,7 +9,8 @@ void ToDoList::addTask(const std::string &description)
 
 void ToDoList::removeTask(int index)
 {
-    if (index >= 0 && index < tasks.size())
+    if (index >= 0 && static_cast<std::size_t>(index) < tasks.size())
+    // above I had to case index to an unsigned type so that it matches tasks
     {
         tasks.erase(tasks.begin() + index);
     }
@@ -20,7 +21,7 @@ void ToDoList::removeTask(int index)
 }
 
 // displays all tasks in the vector
-void displayTasks() const
+void ToDoList::displayTasks() const
 {
     for (size_t i = 0; i < tasks.size(); ++i)
     {
@@ -30,11 +31,11 @@ void displayTasks() const
 }
 
 // mark a task as complete
-void completeTask(int index)
+void ToDoList::completeTask(int index)
 {
-    if (index >= 0 && index < tasks.size())
+    if (index >= 0 && static_cast<std::size_t>(index) < tasks.size())
     {
-        task[index].setCompleted(true);
+        tasks[index].setCompleted(true);
     }
     else
     {

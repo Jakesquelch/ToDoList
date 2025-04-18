@@ -5,7 +5,7 @@
 
 void displayMenu()
 {
-    std::cout << "To-Do List Menu: \n";
+    std::cout << "\nTo-Do List Menu: \n\n";
     std::cout << "1. Add Task\n";
     std::cout << "2. Remove Task\n";
     std::cout << "3. Display Tasks\n";
@@ -58,7 +58,7 @@ int main()
             break;
         }
         case 5:
-            std::cout << "Exiting...see ya pal!\n";
+            std::cout << "\nExiting...see ya later!\n";
             break;
         default:
             std::cout << "Invalid choice. Try again.\n";
