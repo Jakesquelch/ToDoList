@@ -2,6 +2,7 @@
 #include "ToDoList.h"
 
 #include <iostream>
+#include <limits> //for std::numeric_limits
 
 void displayMenu()
 {
@@ -14,6 +15,12 @@ void displayMenu()
     std::cout << "Enter your choice: ";
 }
 
+void pauseForUser()
+{
+    std::cout << "\nPress enter to continue...";
+    std::cin.get(); // waits for user to press enter
+}
+
 int main()
 {
     ToDoList todolist;
@@ -23,38 +30,43 @@ int main()
     {
         displayMenu();
         std::cin >> choice;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // this clears the input buffer of \n
 
         switch (choice)
         {
         case 1:
         {
-            std::cin.ignore(); // clear input buffer
             std::string description;
-            std::cout << "(1) Enter your task to add: ";
-            std::cin >> description;
+            std::cout << "\n(1) Enter your task to add: ";
+            std::getline(std::cin, description); // using getline so can have multi-word inputs
             todolist.addTask(description);
+            std::cout << "Task added successfully!\n";
+            pauseForUser();
             break;
         }
         case 2:
         {
             int index;
-            std::cout << "(2) Enter task number to remove: ";
+            std::cout << "\n(2) Enter task number to remove: ";
             std::cin >> index;
             todolist.removeTask(index - 1);
+            pauseForUser();
             break;
         }
         case 3:
         {
-            std::cout << "(3) Displaying all tasks: \n";
+            std::cout << "\n(3) Displaying all tasks: \n";
             todolist.displayTasks();
+            pauseForUser();
             break;
         }
         case 4:
         {
             int index;
-            std::cout << "Enter task number to mark as completed: ";
+            std::cout << "\nEnter task number to mark as completed: ";
             std::cin >> index;
             todolist.completeTask(index - 1);
+            pauseForUser();
             break;
         }
         case 5:
@@ -62,6 +74,7 @@ int main()
             break;
         default:
             std::cout << "Invalid choice. Try again.\n";
+            pauseForUser();
         }
     } while (choice != 5);
 
