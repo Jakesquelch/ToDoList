@@ -34,6 +34,15 @@ int main()
         std::cin >> choice;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // this clears the input buffer of \n
 
+        if (std::cin.fail()) // makes sure valid choice is picked
+        {
+            std::cin.clear();                                                   // Clear error flag
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+            std::cout << "Invalid input. Please try again.\n";
+            pauseForUser();
+            continue;
+        }
+
         switch (choice)
         {
         case 1:
