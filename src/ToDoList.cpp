@@ -1,5 +1,6 @@
 #include "ToDoList.h"
 #include <iostream>
+#include <fstream> //for saving/loading file operations
 
 // adds a task to the vector
 void ToDoList::addTask(const std::string &description)
@@ -41,4 +42,50 @@ void ToDoList::completeTask(int index)
     {
         std::cerr << "Invalid task index provided\n";
     }
+}
+
+void ToDoList::saveToFile(const std::string &filename) const
+{
+    std::ofstream outFile(filename);
+    if (!outFile)
+    {
+        std::cerr << "Error: Could not open file for saving.\n";
+        return;
+    }
+
+    for (const auto &task : tasks)
+    {
+        outFile << task.getDescription() << "|" << task.isCompleted() << "\n";
+    }
+    outFile.close();
+}
+
+void ToDoList::loadFromFile(const std::string &filename)
+{
+    std::ifstream inFile(filename);
+    if (!inFile)
+    {
+        std::cerr << "Error: Could not open file for loading.\n";
+        return;
+    }
+
+    tasks.clear(); // clear existing tasks
+    std::string description;
+    bool completed;
+    std::string line;
+
+    while (std::getline(inFile, line))
+    {
+        size_t xPos = line.find('|');
+        if (xPos != std::string::npos) // npos basically means "no position" or "not found"
+        {
+            description = line.substr(0, xPos);
+            completed = (line.substr(xPos + 1) == "1");
+            // getting the description and completed status^
+            tasks.emplace_back(description);
+            tasks.back().setCompleted(completed);
+            // then adding it to the tasks (loading it)^
+        }
+    }
+    inFile.close();
 }

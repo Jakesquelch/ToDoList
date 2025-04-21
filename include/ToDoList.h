@@ -17,6 +17,10 @@ public:
     void displayTasks() const;
 
     void completeTask(int index);
+
+    void saveToFile(const std::string &filename) const;
+
+    void loadFromFile(const std::string &filename);
 };
 
 #endif

@@ -24,6 +24,8 @@ void pauseForUser()
 int main()
 {
     ToDoList todolist;
+    todolist.loadFromFile("tasks.txt"); // Load tasks from file
+
     int choice;
 
     do
@@ -74,6 +76,7 @@ int main()
         }
         case 5:
             std::cout << "\nExiting...see ya later!\n";
+            todolist.saveToFile("tasks.txt"); // Save tasks to file
             break;
         default:
             std::cout << "Invalid choice. Try again.\n";
