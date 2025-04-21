@@ -1,6 +1,7 @@
 #include "ToDoList.h"
 #include <iostream>
-#include <fstream> //for saving/loading file operations
+#include <fstream>   //for saving/loading file operations
+#include <algorithm> //for std::sort
 
 // adds a task to the vector
 void ToDoList::addTask(const std::string &description, const std::string &priority)
@@ -57,7 +58,7 @@ void ToDoList::saveToFile(const std::string &filename) const
 
     for (const auto &task : tasks)
     {
-        outFile << task.getDescription() << "|" << task.isCompleted() << "\n";
+        outFile << task.getDescription() << "|" << task.isCompleted() << "|" << task.getPriority() << "\n";
     }
     outFile.close();
 }
@@ -74,20 +75,40 @@ void ToDoList::loadFromFile(const std::string &filename)
     tasks.clear(); // clear existing tasks
     std::string description;
     bool completed;
+    std::string priority;
     std::string line;
 
     while (std::getline(inFile, line))
     {
-        size_t xPos = line.find('|');
-        if (xPos != std::string::npos) // npos basically means "no position" or "not found"
+        size_t firstMarker = line.find('|');                                       // splitting the text file up to determine the variables (desc, completed, prio)
+        size_t secondMarker = line.find('|', firstMarker + 1);                     // the 2 brackets are a range
+        if (firstMarker != std::string::npos && secondMarker != std::string::npos) // npos basically means "no position" or "not found"
         {
-            description = line.substr(0, xPos);
-            completed = (line.substr(xPos + 1) == "1");
+            description = line.substr(0, firstMarker);
+            completed = (line.substr(firstMarker + 1, secondMarker - firstMarker - 1) == "1");
+            priority = line.substr(secondMarker + 1);
             // getting the description and completed status^
-            tasks.emplace_back(description);
+            tasks.emplace_back(description, priority);
             tasks.back().setCompleted(completed);
             // then adding it to the tasks (loading it)^
         }
     }
     inFile.close();
+}
+
+void ToDoList::sortTasksByPriority()
+{
+    auto priorityOrder = [](const std::string &priority) -> int
+    {
+        if (priority == "High")
+            return 3;
+        if (priority == "Medium")
+            return 2;
+        if (priority == "Low")
+            return 1;
+        return 0; // default for unknown priorities
+    };
+
+    std::sort(tasks.begin(), tasks.end(), [&](const Task &a, const Task &b)
+              { return priorityOrder(a.getPriority()) > priorityOrder(b.getPriority()); });
 }

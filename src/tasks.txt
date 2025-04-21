@@ -1,3 +1,5 @@
-Jog|0
-Dog walk|0
-Spanish|0
+Fishing|0|High
+Jolly|0|High
+Cycling|0|Medium
+Jump|0|Low
+Hey|0|Low

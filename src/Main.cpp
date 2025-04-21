@@ -72,8 +72,16 @@ int main()
         }
         case 3:
         {
+            std::string priChoice;
             std::cout << "\n(3) Displaying all tasks: \n";
             todolist.displayTasks();
+            std::cout << "\nWould you like to sort tasks by priority?(Y/N): ";
+            std::cin >> priChoice;
+            if (priChoice == "Y")
+            {
+                todolist.sortTasksByPriority();
+                todolist.displayTasks();
+            }
             pauseForUser();
             break;
         }
