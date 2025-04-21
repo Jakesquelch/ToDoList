@@ -1,1 +1,3 @@
 Jog|0
+Dog walk|0
+Spanish|0

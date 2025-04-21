@@ -10,7 +10,7 @@ private:
     std::vector<Task> tasks; // created a vector called tasks, of Task objects
 
 public:
-    void addTask(const std::string &description);
+    void addTask(const std::string &description, const std::string &priority);
 
     void removeTask(int index);
 

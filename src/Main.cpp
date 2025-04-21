@@ -39,9 +39,12 @@ int main()
         case 1:
         {
             std::string description;
+            std::string priority;
             std::cout << "\n(1) Enter your task to add: ";
             std::getline(std::cin, description); // using getline so can have multi-word inputs
-            todolist.addTask(description);
+            std::cout << "What priority would you like to assign to this task (High, Medium, Low): ";
+            std::cin >> priority;
+            todolist.addTask(description, priority);
             std::cout << "Task added successfully!\n";
             pauseForUser();
             break;

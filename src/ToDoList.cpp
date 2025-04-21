@@ -3,9 +3,9 @@
 #include <fstream> //for saving/loading file operations
 
 // adds a task to the vector
-void ToDoList::addTask(const std::string &description)
+void ToDoList::addTask(const std::string &description, const std::string &priority)
 {
-    tasks.emplace_back(description); // emplace_back constructs the Task object in place, avoiding unnecessary copies
+    tasks.emplace_back(description, priority); // emplace_back constructs the Task object in place, avoiding unnecessary copies
 }
 
 void ToDoList::removeTask(int index)
@@ -26,7 +26,9 @@ void ToDoList::displayTasks() const
 {
     for (size_t i = 0; i < tasks.size(); ++i)
     {
-        std::cout << i + 1 << ". " << tasks[i].getDescription() << (tasks[i].isCompleted() ? " [Completed]" : "") << "\n";
+        std::cout << i + 1 << ". " << tasks[i].getDescription()
+                  << " [" << tasks[i].getPriority() << "] "
+                  << (tasks[i].isCompleted() ? " [Completed]" : "") << "\n";
         // loops through vector and prints the description and if completed
     }
 }

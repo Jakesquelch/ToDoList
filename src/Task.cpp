@@ -1,7 +1,7 @@
 #include "Task.h"
 
-// Constructor initializes the task with a description and sets completed to false
-Task::Task(const std::string &desc) : description(desc), completed(false)
+// Constructor initializes the task with a description and sets completed to false, and prio to medium (set in h file)
+Task::Task(const std::string &desc, const std::string &prio) : description(desc), completed(false), priority(prio)
 {
 }
 
@@ -24,4 +24,14 @@ void Task::setCompleted(bool status)
 void Task::toggleCompleted()
 {
     completed = !completed;
+}
+
+std::string Task::getPriority() const
+{
+    return priority;
+}
+
+void Task::setPriority(const std::string &prio)
+{
+    priority = prio;
 }
