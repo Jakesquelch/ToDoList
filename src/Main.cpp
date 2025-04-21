@@ -47,9 +47,12 @@ int main()
         case 2:
         {
             int index;
+            std::cout << "\nHere are your current tasks: \n";
+            todolist.displayTasks();
             std::cout << "\n(2) Enter task number to remove: ";
             std::cin >> index;
             todolist.removeTask(index - 1);
+            std::cout << "Task removed successfully!\n";
             pauseForUser();
             break;
         }
